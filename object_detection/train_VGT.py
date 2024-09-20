@@ -140,6 +140,10 @@ def main(args):
 if __name__ == "__main__":
     parser = default_argument_parser()
     parser.add_argument("--debug", action="store_true", help="enable debug mode")
+    parser.add_argument("--train_json", default="")
+    parser.add_argument("--train_png_folder", default="")
+    parser.add_argument("--val_json", default="")
+    parser.add_argument("--val_png_folder", default="")
     args = parser.parse_args()
     print("Command Line Args:", args)
     
