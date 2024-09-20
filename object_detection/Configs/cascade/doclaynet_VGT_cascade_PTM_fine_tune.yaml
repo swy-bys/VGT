@@ -11,7 +11,7 @@ MODEL:
   PIXEL_STD: [ 127.5, 127.5, 127.5 ]
   BACKBONE:
     NAME: "build_VGT_fpn_backbone"
-  WEIGHTS: "https://layoutlm.blob.core.windows.net/dit/dit-pts/dit-base-224-p16-500k-62d53a.pth"
+  WEIGHTS: "/content/drive/MyDrive/Colab Notebooks/models/dit-base-224-p16-500k-62d53a.pth"
   VIT:
     NAME: "VGT_dit_base_patch16"
     MERGE_TYPE: "Sum"
