@@ -130,41 +130,44 @@ class DetrDatasetMapper:
         utils.check_image_size(dataset_dict, image)
         
         try:
-            name = dataset_dict["file_name"][0:-4].split('/') 
-            if 'publaynet' in name:
-                root = '/'.join(name[:-2])
-                if name[-2] == 'val':
-                    name[-2] = 'dev'
-                pdf_name = '/'.join(['/VGT_publaynet_grid_pkl'] + name[-2:])
-                with open((root + pdf_name + '.pdf.pkl'), "rb") as f:
-                    sample_inputs = pickle.load(f)
-                input_ids = sample_inputs["input_ids"]
-                bbox_subword_list = sample_inputs["bbox_subword_list"]
-            elif 'DocBank' in name:
-                root = '/'.join(name[:-2])
-                pdf_name = '/'.join(['/VGT_docbank_grid_pkl'] + name[-1:])
-                with open((root + pdf_name + '.pkl'), "rb") as f:
-                    sample_inputs = pickle.load(f)
-                input_ids = sample_inputs["input_ids"]
-                bbox_subword_list = sample_inputs["bbox_subword_list"]
-            elif 'D4LA' in name:
-                root = '/'.join(name[:-2])
-                pdf_name = '/'.join(['/VGT_D4LA_grid_pkl'] + name[-1:])
-                with open((root + pdf_name + '.pkl'), "rb") as f:
-                    sample_inputs = pickle.load(f)
-                input_ids = sample_inputs["input_ids"]
-                bbox_subword_list = sample_inputs["bbox_subword_list"]
-            elif 'DocLayNet' in name:
-                root = '/'.join(name[:-2])
-                pdf_name = '/'.join(['/VGT_DocLayNet_grid_pkl'] + name[-1:])
-                with open((root + pdf_name + '.pdf.pkl'), "rb") as f:
-                    sample_inputs = pickle.load(f)
-                input_ids = sample_inputs["input_ids"]
-                bbox_subword_list = sample_inputs["bbox_subword_list"]
-            else:
-                input_ids = []
-                bbox_subword_list = []
-                print("no grid pkl")
+            # name = dataset_dict["file_name"][0:-4].split('/') 
+            # if 'publaynet' in name:
+            #     root = '/'.join(name[:-2])
+            #     if name[-2] == 'val':
+            #         name[-2] = 'dev'
+            #     pdf_name = '/'.join(['/VGT_publaynet_grid_pkl'] + name[-2:])
+            #     with open((root + pdf_name + '.pdf.pkl'), "rb") as f:
+            #         sample_inputs = pickle.load(f)
+            #     input_ids = sample_inputs["input_ids"]
+            #     bbox_subword_list = sample_inputs["bbox_subword_list"]
+            # elif 'DocBank' in name:
+            #     root = '/'.join(name[:-2])
+            #     pdf_name = '/'.join(['/VGT_docbank_grid_pkl'] + name[-1:])
+            #     with open((root + pdf_name + '.pkl'), "rb") as f:
+            #         sample_inputs = pickle.load(f)
+            #     input_ids = sample_inputs["input_ids"]
+            #     bbox_subword_list = sample_inputs["bbox_subword_list"]
+            # elif 'D4LA' in name:
+            #     root = '/'.join(name[:-2])
+            #     pdf_name = '/'.join(['/VGT_D4LA_grid_pkl'] + name[-1:])
+            #     with open((root + pdf_name + '.pkl'), "rb") as f:
+            #         sample_inputs = pickle.load(f)
+            #     input_ids = sample_inputs["input_ids"]
+            #     bbox_subword_list = sample_inputs["bbox_subword_list"]
+            # elif 'DocLayNet' in name:
+            root = '/'.join(name[:-2])
+            pdf_name = '/'.join(['/VGT_DocLayNet_grid_pkl'] + name[-1:])
+            print('opening pkl file:', (root + pdf_name + '.pdf.pkl'))
+            print('root:', root)
+            print('root:', pdf_name)
+            with open((root + pdf_name + '.pdf.pkl'), "rb") as f:
+                sample_inputs = pickle.load(f)
+            input_ids = sample_inputs["input_ids"]
+            bbox_subword_list = sample_inputs["bbox_subword_list"]
+            # else:
+            #     input_ids = []
+            #     bbox_subword_list = []
+            #     print("no grid pkl")
         except:
             print("Wrong bbox file:", dataset_dict["file_name"])
             input_ids = []
