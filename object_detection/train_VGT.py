@@ -107,15 +107,19 @@ def main(args):
     register_coco_instances(
         "doclayent_train",
         {},
-        "/doclayent_root_path/DocLayNet/COCO/train.json",
-        "/doclayent_root_path/DocLayNet/PNG"
+        # "/doclayent_root_path/DocLayNet/COCO/train.json",
+        args.train_json,
+        # "/doclayent_root_path/DocLayNet/PNG"
+        args.train_png_folder,
     )
 
     register_coco_instances(
         "doclayent_val",
         {},
-        "/doclayent_root_path/DocLayNet/COCO/val.json",
-        "/doclayent_root_path/DocLayNet/PNG"
+        #"/doclayent_root_path/DocLayNet/COCO/val.json",
+        args.val_json,
+        #"/doclayent_root_path/DocLayNet/PNG"
+        args.val_png_folder,
     )
     
 
